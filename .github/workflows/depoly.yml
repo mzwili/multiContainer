@@ -18,7 +18,7 @@ jobs:
       - run: docker build -t mzwilicoding/multi-server ./server
       - run: docker build -t mzwilicoding/multi-worker ./worker
 
-      - run: docker push mzwilicoding/multi-client
-      - run: docker push mzwilicoding/multi-nginx
-      - run: docker push mzwilicoding/multi-server
-      - run: docker push mzwilicoding/multi-worker
+      - run: docker push dockmzwili/multi-client:latest
+      - run: docker push dockmzwili/multi-nginx:latest
+      - run: docker push dockmzwili/multi-server:latest
+      - run: docker push dockmzwili/multi-worker:latest
