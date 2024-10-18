@@ -10,15 +10,17 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-      - run: docker build -t mzwilicoding/react-test -f ./client/Dockerfile.dev ./client
-      - run: docker run -e CI=true mzwilicoding/react-test npm test
+      - run: docker build -t dockmzwili/mzwilicoding-react-test -f ./client/Dockerfile.dev ./client
+      - run: docker run -e CI=true dockmzwili/mzwilicoding-react-test npm test
 
-      - run: docker build -t mzwilicoding/multi-client ./client
-      - run: docker build -t mzwilicoding/multi-nginx ./nginx
-      - run: docker build -t mzwilicoding/multi-server ./server
-      - run: docker build -t mzwilicoding/multi-worker ./worker
+      # Build images with the correct tag
+      - run: docker build -t dockmzwili/mzwilicoding-client ./client
+      - run: docker build -t dockmzwili/mzwilicoding-nginx ./nginx
+      - run: docker build -t dockmzwili/mzwilicoding-server ./server
+      - run: docker build -t dockmzwili/mzwilicoding-worker ./worker
 
-      - run: docker push dockmzwili/multi-client:latest
-      - run: docker push dockmzwili/multi-nginx:latest
-      - run: docker push dockmzwili/multi-server:latest
-      - run: docker push dockmzwili/multi-worker:latest
+      # Push images with the correct tag
+      - run: docker push dockmzwili/mzwilicoding-client:latest
+      - run: docker push dockmzwili/mzwilicoding-nginx:latest
+      - run: docker push dockmzwili/mzwilicoding-server:latest
+      - run: docker push dockmzwili/mzwilicoding-worker:latest
